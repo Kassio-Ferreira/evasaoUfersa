@@ -6,7 +6,12 @@ import utils as ut
 app = Flask(__name__)
 
 
-@app.route('/', methods=['POST'])
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+
+@app.route('/evasao', methods=['POST'])
 def abandono():
     content = request.get_json()
     objeto = ut.formata_objeto(content)
