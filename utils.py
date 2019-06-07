@@ -33,8 +33,9 @@ def abre_logistica():
 def predicao_logistica(x, content):
     modelo = abre_logistica()
     predicao = modelo.predict_proba(x)
-    matriculas = np.asarray(content['matriculas']).reshape(3, 1)
+    matriculas = np.asarray(content['matriculas']).reshape(len(content['matriculas']), 1)
     predicao = np.column_stack((matriculas, predicao))
+    print(predicao)
     keys = ["matricula", "prob_conclusao", "prob_abandono"]
     saida = [dict(zip(keys, values)) for values in predicao]
     return json.dumps(dict(resposta=saida), ensure_ascii=False)
