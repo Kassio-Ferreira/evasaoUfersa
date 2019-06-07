@@ -51,7 +51,7 @@ def abre_tree():
 def predicao_tree(x, content):
     modelo = abre_tree()
     predicao = modelo.predict_proba(x)
-    matriculas = np.asarray(content['matriculas']).reshape(3, 1)
+    matriculas = np.asarray(content['matriculas']).reshape(len(content['matriculas']), 1)
     predicao = np.column_stack((matriculas, predicao))
     keys = ["matricula", "prob_conclusao", "prob_abandono"]
     saida = [dict(zip(keys, values)) for values in predicao]
@@ -68,7 +68,7 @@ def abre_svm():
 def predicao_svm(x, content):
     modelo = abre_svm()
     predicao = modelo.predict_proba(x)
-    matriculas = np.asarray(content['matriculas']).reshape(3, 1)
+    matriculas = np.asarray(content['matriculas']).reshape(len(content['matriculas']), 1)
     predicao = np.column_stack((matriculas, predicao))
     keys = ["matricula", "prob_conclusao", "prob_abandono"]
     saida = [dict(zip(keys, values)) for values in predicao]
